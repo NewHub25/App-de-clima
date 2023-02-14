@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="search-box">
+        <i class="fa-solid fa-location-dot"></i>
+        <input
+          type="text"
+          name="ubicacion"
+          id="ubicacion"
+          placeholder="Ingresa tu ubicación"
+        />
+        <button class="fa-solid fa-magnifying-glass"></button>
+      </div>
+      <div class="not-found">
+        <img src="./img/404.png" alt="Not found" />
+        <p>Ups! ubicación inválida</p>
+      </div>
+      <div class="weather-details">
+        <div class="humidity">
+          <i class="fa-solid fa-droplet"></i>
+          <div class="text">
+            <span></span>
+            <p>Humedad</p>
+          </div>
+        </div>
+        <div class="wind">
+          <i class="fa-solid fa-wind"></i>
+          <div class="text">
+            <span></span>
+            <p>Velocidad del viento</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/54bb720cab.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
