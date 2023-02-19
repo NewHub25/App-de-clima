@@ -28,7 +28,7 @@ body {
 .container {
   position: relative;
   width: 400px;
-  height: 600px;
+  height: 100px;
   background: #eee;
   padding: 25px 30px;
   overflow: hidden;
@@ -152,6 +152,7 @@ body {
 .weather-details {
   scale: 0;
   opacity: 0;
+  display: none;
 }
 .fade-in {
   animation: 0.5s fadeIn forwards;
