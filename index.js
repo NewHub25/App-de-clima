@@ -3,7 +3,7 @@ const search = document.querySelector(".search-box button");
 const weatherBox = document.querySelector(".weather-box");
 const weatherDetails = document.querySelector(".weather-details");
 const error404 = document.querySelector(".not-found");
-let j
+
 const WEATHER_IMAGES = [
   { Clear: "./img/clear.png" },
   { Rain: "./img/rain.png" },
@@ -11,6 +11,7 @@ const WEATHER_IMAGES = [
   { Clouds: "./img/cloud.png" },
   { Haze: "./img/mist.png" },
   { Fog: "./img/mist.png" },
+  { Mist: "./img/mist.png" },
 ];
 
 search.addEventListener("click", () => {
@@ -22,7 +23,6 @@ search.addEventListener("click", () => {
   )
     .then((res) => res.json())
     .then((json) => {
-      j = json
       if (json.cod === "404") {
         container.style.height = "400px";
         weatherBox.style.display = "none";
@@ -46,7 +46,7 @@ search.addEventListener("click", () => {
       const MAIN = json?.weather?.[0].main;
       if (!MAIN) return;
       weather_IMG.src = WEATHER_IMAGES.find((f) => f[MAIN])[MAIN] ?? "";
-      description_P.innerHTML = `${json.weather[0].description} in ${json.name}, ${json.sys.country}`;
+      description_P.innerHTML = `${json.weather[0].description} in <b>${json.name}<b>, <i>${COUNTRY_CODES.find(f=>f[1]===json.sys.country)[0]}</i>`;
       temperature_P.innerHTML = `${(json.main.temp - 273.15).toFixed(
         0
       )}<span>ºC</span>`;
@@ -60,3 +60,15 @@ search.addEventListener("click", () => {
       container.style.height = "600px";
     });
 });
+
+
+/**
+ * Snow
+ * Few Clouds
+ * Broken Clouds
+ * Scattered Clouds
+ * Clear Sky
+ * Overcast Clouds
+ * Mist
+ * Moderate Rain
+ */
