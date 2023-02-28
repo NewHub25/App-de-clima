@@ -1,8 +1,9 @@
 const container = document.querySelector(".container");
-const search = document.querySelector(".search-box button");
+const SEARCH_BUTTON = document.querySelector(".search-box button");
 const weatherBox = document.querySelector(".weather-box");
 const weatherDetails = document.querySelector(".weather-details");
 const error404 = document.querySelector(".not-found");
+const INPUT = document.querySelector(".search-box input");
 
 const WEATHER_IMAGES = [
   { Clear: "./img/clear.png" },
@@ -14,9 +15,9 @@ const WEATHER_IMAGES = [
   { Mist: "./img/mist.png" },
 ];
 
-search.addEventListener("click", () => {
+SEARCH_BUTTON.addEventListener("click", () => {
   const API_KEY = "dd3fd54dd52fcb0979da7cbd209ce7c6";
-  const city = document.querySelector(".search-box input").value;
+  const city = INPUT.value;
   if (city === "") return;
   fetch(
     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`
@@ -46,7 +47,9 @@ search.addEventListener("click", () => {
       const MAIN = json?.weather?.[0].main;
       if (!MAIN) return;
       weather_IMG.src = WEATHER_IMAGES.find((f) => f[MAIN])[MAIN] ?? "";
-      description_P.innerHTML = `${json.weather[0].description} in <b>${json.name}<b>, <i>${COUNTRY_CODES.find(f=>f[1]===json.sys.country)[0]}</i>`;
+      description_P.innerHTML = `${json.weather[0].description} in <b>${
+        json.name
+      }<b>, <i>${COUNTRY_CODES.find((f) => f[1] === json.sys.country)[0]}</i>`;
       temperature_P.innerHTML = `${(json.main.temp - 273.15).toFixed(
         0
       )}<span>ºC</span>`;
@@ -61,7 +64,6 @@ search.addEventListener("click", () => {
     });
 });
 
-
 /**
  * Snow
  * Few Clouds
@@ -72,3 +74,10 @@ search.addEventListener("click", () => {
  * Mist
  * Moderate Rain
  */
+
+function keyEnter(e) {
+  if (e.code === "Enter") {
+    SEARCH_BUTTON.click();
+  }
+}
+INPUT.addEventListener("keydown", keyEnter);
